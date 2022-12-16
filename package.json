@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "author": "Luan Persini",
   "dependencies": {
+    "@heroicons/react": "^2.0.13",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.3",
     "prop-types": "^15.8.1",

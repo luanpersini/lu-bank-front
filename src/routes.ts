@@ -2,8 +2,6 @@ import navigationPath from './common/paths/navigationPath'
 import { NotFound } from './components/general/not-found'
 import { Route } from './interfaces/route'
 import { Homepage } from './pages/homepage/Homepage'
-import { projectsRoutes } from './pages/projects/projectsRoutes'
-import { tasksRoutes } from './pages/tasks/tasksRoutes'
 
 //TODO implement unit test
 const mainRoutes: Route[] = [
@@ -31,9 +29,7 @@ const notFound: Route[] = [
 ]
 const routes: Route[] = [
   ...mainRoutes,
-  ...notFound,  
-  ...projectsRoutes,
-  ...tasksRoutes
+  ...notFound
 ]
 
 export default routes

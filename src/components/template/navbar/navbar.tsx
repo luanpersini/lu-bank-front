@@ -3,15 +3,11 @@ import { Link } from 'react-router-dom'
 import navigationPath from '../../../common/paths/navigationPath'
 
 //import path from '../../../common/path/path'
-import AuthenticationService from '../../../services/AuthenticationService'
-import { Avatar } from './avatar'
 import { CenterLinks } from './center-links'
 import { NavContainer } from './navbar.style'
 import { ToggleButton } from './toggle-button'
 
 export const NavBar: React.FC = () => {
-  const isUserLogedIn = AuthenticationService.validateCredentials()
-
   return (
     <NavContainer>
       <div className="navbar navbar-expand-lg navbar-light bg-light py-1">
@@ -20,21 +16,12 @@ export const NavBar: React.FC = () => {
           <ToggleButton />
 
           {/*<!-- Navbar brand -->*/}
-          <Link className="navbar-brand m-0 ms-auto" to={navigationPath.home.resolve()}>
+          <Link className="navbar-brand m-0 ms-auto" to={navigationPath.home}>
             Lu Bank
           </Link>
 
-          <div className="collapse me-lg-5 navbar-collapse">{isUserLogedIn && <CenterLinks />}</div>
-
-          {/*<!-- Right elements -->*/}
-          <div className="right-elements ms-auto me-2">
-            {!isUserLogedIn && (
-              <span>
-                <a href={navigationPath.auth.login.resolve()}>Login</a> / <a href={navigationPath.registration.register.resolve()}>Sign up</a>
-              </span>
-            )}
-
-            {isUserLogedIn && <Avatar />}
+          <div className="collapse me-lg-5 navbar-collapse">
+            <CenterLinks />
           </div>
         </div>
       </div>

@@ -1,17 +1,30 @@
-import { useLocation } from 'react-router-dom'
+import { ListWrapper } from 'src/components/elements/ListWrapper'
 import { PageTitle } from '../../components/template/page-title'
 import { Page } from '../../interfaces/page'
 
 export function Homepage(props: Page) {
-  const location = useLocation()
-  const state = location.state as any
-  const alertMessage: string = state?.alertMessage
-
-  //TODO use <PageTitle {...props}>{title}</PageTitle> directly here since document title will move to app.ts
+  const data = [
+    {
+      id: '1234',
+      amout: '1050.50'
+    },
+    {
+      id: '12345',
+      amout: '50'
+    },
+    {
+      id: '123456',
+      amout: '100'
+    }
+  ]
   return (
     <div>
       <PageTitle title="Lu Bank" />
-      {alertMessage && <div className="alert alert-success">{alertMessage}</div>}
+      <ListWrapper isLoading={false} data={data}>
+        {data.map((operation) => (
+          <p key={operation.id}>{operation.id}: {operation.amout}</p>
+        ))}
+      </ListWrapper>
     </div>
   )
 }

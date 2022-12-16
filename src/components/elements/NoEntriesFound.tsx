@@ -4,7 +4,7 @@ type Props = {
   message?: string
 }
 
-export function NoEntriesFound({ message = 'No Entries Found' }: Props) {
+export function NoEntriesFound({ message = 'No Entries Found.' }: Props) {
   return (
     <div className="d-flex justify-content-center align-items-center" style={{ height: '20rem' }}>
       <div className="text-secondary">

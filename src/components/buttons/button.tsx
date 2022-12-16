@@ -1,7 +1,6 @@
 import { ButtonHTMLAttributes } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { ProtectedElement } from '../general/ProtectedElement'
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string | undefined
@@ -16,12 +15,10 @@ export const StyledButton = styled.button`
 export function Button(props: Props) {
   const InnerButton = (props: Props) => {
     const { label, className } = props
-    return (
-      <ProtectedElement {...props}>
+    return (     
         <StyledButton {...props} disabled={false} data-cy={label?.toLowerCase()} className={className}>
           {label}
-        </StyledButton>
-      </ProtectedElement>
+        </StyledButton>    
     )
   }
 

@@ -1,7 +1,6 @@
 import { Link, LinkProps } from 'react-router-dom'
-import { IAreaAction } from 'src/interfaces/authorization'
 import styled from 'styled-components'
-import { ProtectedElement } from '../general/ProtectedElement'
+
 
 const StyledLink = styled(Link)`
   background-color: inherit;
@@ -10,14 +9,12 @@ const StyledLink = styled(Link)`
   border: inherit;
 `
 interface Props extends LinkProps { 
-  authorization?: IAreaAction 
+  class?: string
 }
 
 //This function replaces the "useNavigation" function and should be used moving forward
 export function NavigationLink(props: Props) {
-  return (
-    <ProtectedElement authorization={props?.authorization}>
-      <StyledLink {...props} />
-    </ProtectedElement>
+  return (   
+      <StyledLink {...props} />    
   )
 }

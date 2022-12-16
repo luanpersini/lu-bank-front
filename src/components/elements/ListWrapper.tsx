@@ -1,5 +1,5 @@
-import { NoEntriesFound } from '.NoEntriesFound'
 import { Spinner } from 'src/components/elements/Spinner'
+import { NoEntriesFound } from './NoEntriesFound'
 
 type Props = {
   children: React.ReactNode
