@@ -4,7 +4,8 @@ const { apiUrl } = envConfig
 
 const apiPaths = { 
   accountOperations: {
-    deposit: `${apiUrl}/deposit`,
+    baseUrl: `${apiUrl}/account/`,
+    deposit: `${apiUrl}/account/deposit`,
     withdraw: `${apiUrl}/account/withdraw`
   }
 }
