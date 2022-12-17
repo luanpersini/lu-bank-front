@@ -1,4 +1,5 @@
 import { ListWrapper } from 'src/components/elements/ListWrapper'
+import { CustomTable } from 'src/components/elements/table'
 import { PageTitle } from '../../components/template/page-title'
 import { Page } from '../../interfaces/page'
 
@@ -17,13 +18,12 @@ export function Homepage(props: Page) {
       amout: '100'
     }
   ]
+  const headers = ['id', 'amount']
   return (
     <div>
       <PageTitle title="Lu Bank" />
-      <ListWrapper isLoading={false} data={data}>
-        {data.map((operation) => (
-          <p key={operation.id}>{operation.id}: {operation.amout}</p>
-        ))}
+      <ListWrapper isLoading={false} data={data}>       
+          <CustomTable headers={headers} data={data} tablestyle={"table-striped"} headerstyle={"table-dark"}/>
       </ListWrapper>
     </div>
   )
