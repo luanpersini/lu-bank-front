@@ -34,8 +34,8 @@ export function Homepage(props: Page) {
 
   return (
     <div>
-      <PageTitle title="Lu Bank" />
-      <p>Welcome! Use the buttons bellow to make your operations.</p>
+      <PageTitle title="Welcome!" />
+      <p>Use the buttons bellow to make operations.</p>
       <p>
         <Button
           onClick={() => newDeposit({ accountId, operationId: OperationTypes.DEPOSIT, sourceId: 'terminal', amount: 100 })}
