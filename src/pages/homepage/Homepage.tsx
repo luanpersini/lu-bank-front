@@ -1,36 +1,22 @@
+import { FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ListWrapper } from 'src/components/elements/ListWrapper'
 import { CustomTable } from 'src/components/elements/table'
 import { Button } from 'src/components/general'
 import { PageTitle } from '../../components/template/page-title'
 import { Page } from '../../interfaces/page'
-import { OperationTypes, useNewAccountOperation } from './api/useNewAccountOperation'
+import { accountId, makeAccountOperation, OperationsList, SourcesList } from '../AccountOperationFactory'
+import { useGetAccountOperationsList } from './api/useGetAccountOperations'
+import { useNewAccountOperation } from './api/useNewAccountOperation'
 
 export function Homepage(props: Page) {
-  const { newAccountOperation: newDeposit } = useNewAccountOperation(OperationTypes.DEPOSIT)
-  const { newAccountOperation: newWithdraw } = useNewAccountOperation(OperationTypes.WITHDRAW)
-  const headers = ['id', 'amount']
-  const accountId = 'accountId-1234'
-  const data = [
-    {
-      id: '1234',
-      amout: '1050.50'
-    },
-    {
-      id: '12345',
-      amout: '50'
-    },
-    {
-      id: '123456',
-      amout: '100'
-    }
-  ]
-
-  // const makeOperation = (params: AccountOperation) => ({
-  //   accountId: 'accountId',
-  //   operationId: params.operationId,
-  //   sourceId: 'string',
-  //   amount: params.amount
-  // })
+  const { newAccountOperation: newDeposit } = useNewAccountOperation(OperationsList.deposit.name)
+  // const { newAccountOperation: newWithdraw } = useNewAccountOperation(OperationTypes.WITHDRAW)
+  const navigate = useNavigate()
+  const headers = ['ID', 'Operation', 'Source', 'Amount', 'Data']
+  const lines = ['id', 'operation', 'source', 'amount', 'createdAt']
+  const { listAccountOperations } = useGetAccountOperationsList(accountId)
+  const accountOperations = listAccountOperations()
 
   return (
     <div>
@@ -38,12 +24,14 @@ export function Homepage(props: Page) {
       <p>Use the buttons bellow to make operations.</p>
       <p>
         <Button
-          onClick={() => newDeposit({ accountId, operationId: OperationTypes.DEPOSIT, sourceId: 'terminal', amount: 100 })}
+          onClick={(evt: FormEvent) => {
+            newDeposit(makeAccountOperation({ operationId: OperationsList.deposit.id, sourceId: SourcesList.terminal.id, amount: '100.00' }))
+          }}
           label="Deposit 100"
         />
       </p>
-      <ListWrapper isLoading={false} data={data}>
-        <CustomTable headers={headers} data={data} tablestyle={'table-striped'} headerstyle={'table-dark'} />
+      <ListWrapper isLoading={false} data={accountOperations}>
+        <CustomTable headers={headers} lines={lines} data={accountOperations} tablestyle={'table-striped'} headerstyle={'table-dark'} />
       </ListWrapper>
     </div>
   )

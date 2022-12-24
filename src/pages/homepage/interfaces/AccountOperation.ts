@@ -1,8 +1,6 @@
-export interface AccountOperation {
-  id?: string
-  accountId: string
+export interface AccountOperation {  
+  accountId?: string
   operationId: string
   sourceId: string 
-  amount: number
-  createdAt?: Date
+  amount: string
 }

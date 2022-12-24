@@ -6,7 +6,7 @@ export type ErrorResponse = {
 }
 
 function requestInterceptor(config: AxiosRequestConfig) {
-  config.headers = { Accept: 'application/json' } 
+  config.headers = { Accept: 'application/json' }
   return config
 }
 
@@ -29,8 +29,8 @@ axiosClient.interceptors.response.use(
         status: e.status || 500,
         message: e.message
       }
-    }      
-  
+    }
+
     if (process.env.NODE_ENV !== 'production') {
       console.log(error)
     }

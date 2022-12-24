@@ -12,8 +12,7 @@ import { StatefulThemeProvider } from './common/theme/themeProvider'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false,
-      refetchInterval: 60000 // 60 seconds
+      refetchOnWindowFocus: true      
     },
   },
 })

@@ -5,6 +5,8 @@ import { axiosClient } from './AxiosAdapter'
 
 type QueryKeyT = [string, Record<string, unknown> | undefined]
 
+// TODO - refactor this entire adapter
+
 export const fetcher = async <T>({ queryKey, pageParam }: Omit<QueryFunctionContext<QueryKeyT>, 'meta'>): Promise<T> => {
   const [url, params] = queryKey
   return await axiosClient.get(url, { params: { ...params, pageParam } })
@@ -42,7 +44,8 @@ const useGenericMutation = <T, S>(
       queryClient.setQueryData([url!, params], context)
     },
     onSettled: () => {
-      queryClient.invalidateQueries([url!, params])
+     queryClient.invalidateQueries([url!, params]) // Not Working - Look for a fix
+     queryClient.invalidateQueries()      
     }
   })
 }

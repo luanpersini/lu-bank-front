@@ -6,7 +6,8 @@ const apiPaths = {
   accountOperations: {
     baseUrl: `${apiUrl}/account/`,
     deposit: `${apiUrl}/account/deposit`,
-    withdraw: `${apiUrl}/account/withdraw`
+    withdraw: `${apiUrl}/account/withdraw`,
+    getAccountOperations: `${apiUrl}/account/operations/`,
   }
 }
 

@@ -1,12 +1,13 @@
 interface Props {
   headers: string[]
+  lines: string[]
   data: unknown[]
   tablestyle?: string
   headerstyle?: string
 }
-export const CustomTable = ({ headers, data, tablestyle, headerstyle = '' }: Props) => {
+export const CustomTable = ({ headers, lines, data, tablestyle, headerstyle = '' }: Props) => {
   return (
-    <table className={"table " + tablestyle}>
+    <table className={'table ' + tablestyle}>
       <thead className={headerstyle}>
         <tr>
           <th scope="col">#</th>
@@ -18,11 +19,12 @@ export const CustomTable = ({ headers, data, tablestyle, headerstyle = '' }: Pro
         </tr>
       </thead>
       <tbody>
-        {data.map((operation: any, key) => (
-          <tr key={operation.id}>
+        {data.map((data: any, key) => (
+          <tr key={key}>
             <th scope="row">{key}</th>
-            <td> {operation.id}</td>
-            <td>{operation.amount}</td>
+            {lines.map((line, key) => (
+              <td key={key}>{data[line]}</td>
+            ))}
           </tr>
         ))}
       </tbody>
